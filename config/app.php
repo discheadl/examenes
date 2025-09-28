@@ -172,7 +172,7 @@ return [
      */
     'Error' => [
         'errorLevel' => E_ALL & ~E_USER_DEPRECATED,
-        'exceptionRenderer' => Cake\Error\ExceptionRenderer::class,
+        'exceptionRenderer' => \Cake\Error\Renderer\WebExceptionRenderer::class,
         'skipLog' => [],
         'log' => true,
         'trace' => false,
