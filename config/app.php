@@ -280,20 +280,17 @@ return [
          * in app_local.php depending on the application's needs.
          */
         'default' => [
-            'className' => Connection::class,
-            'driver' => Mysql::class,
+            'className' => Cake\Database\Connection::class,
+            'driver' => Cake\Database\Driver\Mysql::class,
             'persistent' => false,
-            'host' => 'sql312.infinityfree.com',   // MYSQL HOSTNAME
-            'port' => 3306,                        // MYSQL PORT
-            'username' => 'if0_40046819',          // MYSQL USERNAME
-            'database' => 'if0_40046819_examenesdb', // DATABASE NAME
-            'password' => 'htt399253',             // MYSQL PASSWORD
+            'host' => env('DB_HOST', '127.0.0.1'),
+            'port' => env('DB_PORT', 3306),
+            'username' => env('DB_USERNAME', 'root'),
+            'password' => env('DB_PASSWORD', ''),
+            'database' => env('DB_DATABASE', 'myapp'),
             'encoding' => 'utf8mb4',
             'timezone' => 'UTC',
             'cacheMetadata' => true,
-            'flags' => [],
-            'quoteIdentifiers' => false,
-            'log' => false,
 
             /*
              * Set identifier quoting to true if you are using reserved words or
