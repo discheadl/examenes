@@ -49,11 +49,11 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
             ]))
             ->add(new RoutingMiddleware($this))
             ->add(new BodyParserMiddleware())
-            ->add(new CsrfProtectionMiddleware([
-                'httponly' => true,
-                'secure' => false, // si Railway fuerza HTTPS, cámbialo luego a true
-                'samesite' => 'Lax'
-            ]))
+            //->add(new CsrfProtectionMiddleware([
+            //    'httponly' => true,
+            //    'secure' => false, // si Railway fuerza HTTPS, cámbialo luego a true
+             //   'samesite' => 'Lax'
+            //]))
             // Agregar middleware de autenticación
             ->add(new AuthenticationMiddleware($this));
 
