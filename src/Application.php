@@ -67,12 +67,19 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
         ]);
 
         // Cargar identificadores
-        $authenticationService->loadIdentifier('Authentication.Password', [
-            'fields' => [
-                'username' => 'email',
-                'password' => 'password',
-            ]
-        ]);
+        $authenticationService->loadAuthenticator('Authentication.Form', [
+    'fields' => [
+        'username' => 'email',
+        'password' => 'password',
+        ],
+        'loginUrl' => '/users/login',
+    ])->addIdentifier('Authentication.Password', [
+        'fields' => [
+            'username' => 'email',
+            'password' => 'password',
+        ]
+    ]);
+
 
         // Cargar authenticators
         $authenticationService->loadAuthenticator('Authentication.Session');

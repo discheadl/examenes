@@ -171,11 +171,11 @@ return [
      *   your application that still emit deprecations.
      */
     'Error' => [
-        'errorLevel' => E_ALL,
+        'errorLevel' => E_ALL & ~E_USER_DEPRECATED,
+        'exceptionRenderer' => Cake\Error\ExceptionRenderer::class,
         'skipLog' => [],
         'log' => true,
-        'trace' => true,
-        'ignoredDeprecationPaths' => [],
+        'trace' => false,
     ],
 
     /*
