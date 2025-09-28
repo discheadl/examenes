@@ -60,37 +60,31 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
 
     // Implementar método de Authentication
     public function getAuthenticationService(ServerRequestInterface $request): AuthenticationServiceInterface
-    {
-        $authenticationService = new AuthenticationService([
-            'unauthenticatedRedirect' => '/users/login',
-            'queryParam' => 'redirect',
-        ]);
+    {   
+    $authenticationService = new AuthenticationService([
+        'unauthenticatedRedirect' => '/users/login',
+        'queryParam' => 'redirect',
+    ]);
 
-        // Cargar identificadores
-        $authenticationService->loadAuthenticator('Authentication.Form', [
-    'fields' => [
-        'username' => 'email',
-        'password' => 'password',
-        ],
-        'loginUrl' => '/users/login',
-    ])->addIdentifier('Authentication.Password', [
+    // 1. Configurar IDENTIFICADOR
+    $authenticationService->loadIdentifier('Authentication.Password', [
         'fields' => [
             'username' => 'email',
             'password' => 'password',
         ]
     ]);
 
+    // 2. Configurar AUTHENTICADORES
+    $authenticationService->loadAuthenticator('Authentication.Session');
+    $authenticationService->loadAuthenticator('Authentication.Form', [
+        'fields' => [
+            'username' => 'email',
+            'password' => 'password',
+        ],
+        'loginUrl' => '/users/login',
+    ]);
 
-        // Cargar authenticators
-        $authenticationService->loadAuthenticator('Authentication.Session');
-        $authenticationService->loadAuthenticator('Authentication.Form', [
-            'fields' => [
-                'username' => 'email',
-                'password' => 'password',
-            ],
-            'loginUrl' => '/users/login',
-        ]);
-
-        return $authenticationService;
+    return $authenticationService;
     }
+
 }
