@@ -3,7 +3,7 @@ FROM php:8.2-apache
 
 # Instala extensiones necesarias para CakePHP
 RUN apt-get update && apt-get install -y \
-    libicu-dev libzip-dev unzip git \
+    libicu-dev libzip-dev unzip git default-mysql-client \
     && docker-php-ext-install intl pdo pdo_mysql \
     && a2enmod rewrite \
     && rm -rf /var/lib/apt/lists/*
@@ -19,7 +19,7 @@ COPY . /var/www/html
 
 # Instala dependencias de Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
-RUN composer install --no-dev --optimize-autoloader --ignore-platform-req=ext-intl
+RUN composer install --no-dev --optimize-autoloader
 
 # Permisos para tmp y logs
 RUN chown -R www-data:www-data /var/www/html/tmp /var/www/html/logs
