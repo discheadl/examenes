@@ -283,7 +283,7 @@ return [
             'className' => 'Cake\Database\Connection',
             'driver' => 'Cake\Database\Driver\Mysql',
             'persistent' => false,
-            'host' => env('DB_HOST', 'metro.proxy.rlwy.net'),
+            'host' => env('DB_HOST', 'tcp:metro.proxy.rlwy.net'),
             'port' => env('DB_PORT', 25753),
             'username' => env('DB_USERNAME', 'root'),
             'password' => env('DB_PASSWORD', 'eRhqpBIrpcSZCfJULTJzYODzpySsDpsQ'),
@@ -291,6 +291,11 @@ return [
             'encoding' => 'utf8mb4',
             'timezone' => 'UTC',
             'cacheMetadata' => true,
+            'flags' => [
+                PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8mb4',
+                PDO::ATTR_TIMEOUT => 5,
+            ],
+
             /*
              * Set identifier quoting to true if you are using reserved words or
              * special characters in your table or column names. Enabling this
