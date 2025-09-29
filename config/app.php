@@ -280,12 +280,10 @@ return [
          * in app_local.php depending on the application's needs.
          */
         'default' => [
-            'className' => 'Cake\Database\Connection',
-            'driver' => 'Cake\Database\Driver\Mysql',
+            'className' => \Cake\Database\Connection::class,
+            'driver' => \Cake\Database\Driver\Mysql::class,
             'persistent' => false,
-            
             'url' => env('DATABASE_URL', null),
-
             'encoding' => 'utf8mb4',
             'timezone' => 'UTC',
             'cacheMetadata' => true,
