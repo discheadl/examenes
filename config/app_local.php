@@ -7,20 +7,19 @@ return [
             'driver'     => Mysql::class,
             'persistent' => false,
 
-            // Usa tus variables o los defaults de Railway (sin 'tcp:')
-            'url' => env('DATABASE_URL', null),
+            'host'       => env('DB_HOST')     ?: 'mysql.railway.internal',
+            'port'       => (int)(env('DB_PORT') ?: 3306),
+            'username'   => env('DB_USERNAME') ?: 'root',
+            'password'   => env('DB_PASSWORD') ?: '',
+            'database'   => env('DB_DATABASE') ?: 'railway',
 
             'encoding'      => 'utf8mb4',
             'timezone'      => 'UTC',
             'cacheMetadata' => true,
             'flags' => [
                 PDO::ATTR_TIMEOUT => 5,
-                // No necesitas 'MYSQL_ATTR_INIT_COMMAND' si usas 'encoding'
+                
             ],
-
-            // Si vas a usar DSN, deja esto y asegúrate de que sea correcto.
-            // Si NO lo usas, ponlo en null o quítalo.
-            'url' => env('DATABASE_URL', null),
         ],
     ],
     'EmailTransport' => [
