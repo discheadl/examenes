@@ -283,11 +283,8 @@ return [
             'className' => 'Cake\Database\Connection',
             'driver' => 'Cake\Database\Driver\Mysql',
             'persistent' => false,
-            'host'     => env('DB_HOST') ?: 'metro.proxy.rlwy.net',
-            'port'     => (int) (env('DB_PORT') ?: 25753),
-            'username' => env('DB_USERNAME') ?: 'root',
-            'password' => env('DB_PASSWORD') ?: '',
-            'database' => env('DB_DATABASE') ?: 'railway',
+            
+            'url' => env('DATABASE_URL', null),
 
             'encoding' => 'utf8mb4',
             'timezone' => 'UTC',
